@@ -1936,9 +1936,7 @@ NAME and ARG-VALUES are the name and arguments for the call."
                         (cond ((stringp arg)
                                (prin1-to-string
                                 (replace-regexp-in-string
-                                 "\n" "⮐" (truncate-string-to-width
-                                           arg (floor (window-width) 2)
-                                           nil nil t))))
+                                 "\n" "⮐" arg)))
                               (t (prin1-to-string arg))))
                       arg-values " ")
            'font-lock-face 'font-lock-constant-face)))
