@@ -326,6 +326,10 @@ transient menu interface provided by `gptel-menu'."
 This hook runs in gptel chat buffers after making a change to gptel's
 configuration that might require a UI update.")
 
+(defvar gptel--tool-truncation nil
+  "If set, tool confirmation prompts will be truncated to this size.
+If unset, truncation will be dynamic based on the window width.")
+
 (defvar-local gptel--bounds nil)
 (put 'gptel--bounds 'safe-local-variable #'always)
 
@@ -1936,7 +1940,9 @@ NAME and ARG-VALUES are the name and arguments for the call."
                         (cond ((stringp arg)
                                (prin1-to-string
                                 (replace-regexp-in-string
-                                 "\n" "⮐" arg)))
+                                 "\n" "⮐" (truncate-string-to-width
+                                           arg (or gptel--tool-truncation (floor (window-width) 2))
+                                           nil nil t))))
                               (t (prin1-to-string arg))))
                       arg-values " ")
            'font-lock-face 'font-lock-constant-face)))
