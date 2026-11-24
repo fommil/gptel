@@ -582,6 +582,7 @@ Media files, if present, are placed in `gptel-context'."
 ;;         (plist-get (car (last prompts)) :content)))
 
 (defconst gptel--anthropic-models
+  ;; NOTE when adding a model, also add it to gptel-bedrock.el
   (gptel--process-models
    '((claude-sonnet-5-5
       :description "The best combination of speed and intelligence"
